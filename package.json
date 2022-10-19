@@ -1,12 +1,12 @@
 {
-  "name": "frontend-h5-web-v1",
+  "name": "frontend-h5-mall-v1",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "web-dev": "vite --host",
-    "web-build": "tsc && vite build",
-    "web-preview": "vite preview"
+    "mall-dev": "vite --host",
+    "mall-build": "tsc && vite build",
+    "mall-preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
