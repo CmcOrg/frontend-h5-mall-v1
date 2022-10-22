@@ -1,11 +1,11 @@
 import {PageHeader} from "antd";
 
-// 欢迎页
+// 商城平台-欢迎页
 export default function () {
 
     return (
         <PageHeader
-            title={"订单平台"}
+            title={"商城平台"}
         />
     )
 
