@@ -2,6 +2,30 @@ import {ProSchemaValueEnumType, RequestData} from "@ant-design/pro-components";
 import {ListToTree} from "./TreeUtil";
 import MyPageDTO from "@/model/dto/MyPageDTO";
 
+// 将 map转换为 下拉选 list
+export function NumberTextMapToSelectList(map: Map<number, { text: string }>) {
+    const resultList: DictLongListVO[] = []
+    map.forEach((value, key) => {
+        resultList.push({
+            value: key,
+            label: value.text,
+        })
+    })
+    return resultList;
+}
+
+// 将 map转换为 下拉选 list
+export function NumberStringMapToSelectList(map: Map<number, string>) {
+    const resultList: DictLongListVO[] = []
+    map.forEach((value, key) => {
+        resultList.push({
+            value: key,
+            label: value,
+        })
+    })
+    return resultList;
+}
+
 export const YesNoDict = new Map<any, ProSchemaValueEnumType>();
 YesNoDict.set(true, {text: '是', status: 'success'})
 YesNoDict.set(false, {text: '否', status: 'error'})

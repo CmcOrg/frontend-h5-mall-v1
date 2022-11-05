@@ -6,6 +6,7 @@ import {
     TakeawayCategoryInsertOrUpdateDTO
 } from "@/api/admin/TakeawayCategoryController";
 import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
+import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawayCategoryInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawayCategoryDO>[] => [
     {
@@ -16,9 +17,15 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawayCategoryIns
 
     {title: '分类名称', dataIndex: 'name', ellipsis: true, width: 50,},
 
-    {title: '场景', dataIndex: 'scene', ellipsis: true, width: 50,},
+    {
+        title: '场景', dataIndex: 'scene', valueType: 'select',
+        fieldProps: {
+            showSearch: true,
+            options: TakeawayCategorySceneTypeEnumSelectList,
+        },
+    },
 
-    {title: '排序号', dataIndex: 'orderNo', ellipsis: true, width: 50, hideInSearch: true,},
+    {title: '排序号', dataIndex: 'orderNo', ellipsis: true, width: 70, hideInSearch: true,},
 
     {
         title: '创建时间',
