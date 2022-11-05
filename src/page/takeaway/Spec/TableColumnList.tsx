@@ -14,11 +14,11 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySpecInsertO
         valueType: 'index',
     },
 
-    {title: '类型名称', dataIndex: 'typeName', ellipsis: true,},
+    {title: '类型名称', dataIndex: 'typeName', ellipsis: true, width: 90,},
 
-    {title: '规格名称', dataIndex: 'name', ellipsis: true,},
+    {title: '规格名称', dataIndex: 'name', ellipsis: true, width: 90,},
 
-    {title: '排序号', dataIndex: 'orderNo', ellipsis: true, hideInSearch: true,},
+    {title: '排序号', dataIndex: 'orderNo', ellipsis: true, width: 90, hideInSearch: true,},
 
     {
         title: '创建时间',
@@ -40,7 +40,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySpecInsertO
         valueEnum: YesNoDict
     },
 
-    {title: '备注', dataIndex: 'remark', ellipsis: true, width: 50,},
+    {title: '备注', dataIndex: 'remark', ellipsis: true, width: 90,},
 
     {
         title: '操作',
