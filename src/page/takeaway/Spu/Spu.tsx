@@ -150,7 +150,7 @@ export default function () {
                 }}
                 visible={formVisible}
                 onVisibleChange={setFormVisible}
-                columns={SchemaFormColumnList()}
+                columns={SchemaFormColumnList(useForm)}
                 onFinish={async (form) => {
                     await TakeawaySpuInsertOrUpdate({...currentForm.current, ...form}).then(res => {
                         ToastSuccess(res.msg)
