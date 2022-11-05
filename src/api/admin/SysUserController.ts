@@ -42,6 +42,7 @@ export interface SysUserInfoByIdVO {
     email?: string // 邮箱，可以为空
     signInName?: string // 登录名，可以为空
     phone?: string // 手机号，可以为空
+    tenantId?: number // 租户主键 id
     id?: number // 主键id
     createId?: number // 创建人id
     createTime?: string // 创建时间
@@ -64,7 +65,7 @@ export interface SysUserInsertOrUpdateDTO {
     nickname?: string // 昵称 {"regexp":"^[\\u4E00-\\u9FA5A-Za-z0-9_-]{2,20}$"}
     bio?: string // 个人简介
     avatarUri?: string // 头像uri
-    enableFlag?: boolean // 是否正常
+    enableFlag?: boolean // 正常/冻结
     roleIdSet?: number[] // 角色 idSet
     id?: number // 主键id {"min":1}
 }
@@ -94,7 +95,7 @@ export interface SysUserPageVO {
     avatarUri?: string // 头像uri
     email?: string // 邮箱，备注：会脱敏
     signInName?: string // 登录名，会脱敏
-    enableFlag?: boolean // 是否正常
+    enableFlag?: boolean // 正常/冻结
     passwordFlag?: boolean // 是否有密码
     createTime?: string // 创建时间
     updateTime?: string // 修改时间
