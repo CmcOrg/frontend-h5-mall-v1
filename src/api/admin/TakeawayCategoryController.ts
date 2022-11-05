@@ -19,6 +19,7 @@ export interface NotNullId {
 export interface TakeawayCategoryDO {
     name?: string // 分类名称
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
+    orderNo?: number // 排序号（值越大越前面，默认为 0）
     id?: number // 主键id
     createId?: number // 创建人id
     createTime?: string // 创建时间
