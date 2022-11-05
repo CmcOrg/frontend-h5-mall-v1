@@ -2,6 +2,7 @@ import {YesNoDict} from "@/util/DictUtil";
 import {ActionType, ProColumns} from "@ant-design/pro-components";
 import {TakeawaySpuDeleteByIdSet, TakeawaySpuDO, TakeawaySpuInsertOrUpdateDTO} from "@/api/admin/TakeawaySpuController";
 import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
+import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySpuInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawaySpuDO>[] => [
     {
@@ -10,9 +11,15 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySpuInsertOr
         valueType: 'index',
     },
 
-    {title: 'SPU 名称', dataIndex: 'name', ellipsis: true, width: 90,},
+    {title: 'SPU名称', dataIndex: 'name', ellipsis: true, width: 90,},
 
-    {title: '场景', dataIndex: 'scene', ellipsis: true, width: 90,},
+    {
+        title: '场景', dataIndex: 'scene', valueType: 'select',
+        fieldProps: {
+            showSearch: true,
+            options: TakeawayCategorySceneTypeEnumSelectList,
+        },
+    },
 
     {
         title: '是否必选',

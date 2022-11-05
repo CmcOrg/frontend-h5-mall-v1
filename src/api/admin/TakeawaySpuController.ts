@@ -17,7 +17,7 @@ export interface NotNullId {
 }
 
 export interface TakeawaySpuDO {
-    name?: string // SPU 名称
+    name?: string // SPU名称
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
     mustFlag?: boolean // 是否必选，即：不选无法下单
     orderNo?: number // 排序号（值越大越前面，默认为 0）
@@ -38,7 +38,7 @@ export function TakeawaySpuInfoById(form: NotNullId, config?: AxiosRequestConfig
 }
 
 export interface TakeawaySpuInsertOrUpdateDTO {
-    name: string // SPU 名称
+    name: string // SPU名称
     scene: 1 | 2 // 场景：1 堂食 2 外卖
     mustFlag?: boolean // 是否必选，即：不选无法下单
     orderNo?: number // 排序号（值越大越前面，默认为 0）
@@ -53,7 +53,7 @@ export function TakeawaySpuInsertOrUpdate(form: TakeawaySpuInsertOrUpdateDTO, co
 }
 
 export interface TakeawaySpuPageDTO {
-    name?: string // SPU 名称
+    name?: string // SPU名称
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
     mustFlag?: boolean // 是否必选，即：不选无法下单
     orderNo?: number // 排序号（值越大越前面，默认为 0）

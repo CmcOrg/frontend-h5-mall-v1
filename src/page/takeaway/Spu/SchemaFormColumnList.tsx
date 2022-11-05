@@ -1,6 +1,7 @@
 import {YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawaySpuInsertOrUpdateDTO} from "@/api/admin/TakeawaySpuController";
+import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 export const InitForm: TakeawaySpuInsertOrUpdateDTO = {} as TakeawaySpuInsertOrUpdateDTO
 
@@ -8,7 +9,7 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO
     return [
 
         {
-            title: '名称',
+            title: 'SPU名称',
             dataIndex: 'name',
             formItemProps: {
                 rules: [
@@ -24,6 +25,11 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO
         {
             title: '场景',
             dataIndex: 'scene',
+            valueType: 'select',
+            fieldProps: {
+                showSearch: true,
+                options: TakeawayCategorySceneTypeEnumSelectList,
+            },
             formItemProps: {
                 rules: [
                     {

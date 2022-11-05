@@ -16,7 +16,7 @@ import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
 import SchemaFormColumnList, {InitForm} from "./SchemaFormColumnList";
 import CommonConstant from "@/model/constant/CommonConstant";
 
-// 商品 Spu
+// 商品SPU
 export default function () {
 
     const [columnsStateMap, setColumnsStateMap] = useState<Record<string, ColumnsState>>();
@@ -88,7 +88,7 @@ export default function () {
             </ProTable>
 
             <BetaSchemaForm<TakeawaySpuInsertOrUpdateDTO>
-                title={currentForm.current.id ? "编辑商品 Spu" : "新建商品 Spu"}
+                title={currentForm.current.id ? "编辑商品SPU" : "新建商品SPU"}
                 layoutType={"ModalForm"}
                 grid
                 rowProps={{
