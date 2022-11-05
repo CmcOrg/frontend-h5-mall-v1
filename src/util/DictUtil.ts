@@ -81,15 +81,23 @@ interface IDictResult {
 }
 
 // 通用的，获取字典集合
-export function GetDictList<T extends IDictResult>(requestFunction: (value: MyPageDTO | any) => Promise<RequestData<T>>) {
+export function GetDictList<T extends IDictResult>(requestFunction: (value: MyPageDTO | any) => Promise<RequestData<T>>, allPropFlag?: boolean) {
     return new Promise<DictLongListVO[]>(resolve => {
         requestFunction({pageSize: -1}).then(res => {
             let dictList: DictLongListVO[] = []
             if (res.data) {
-                dictList = res.data.map(item => ({
-                    label: item.name!,
-                    value: item.id!,
-                }));
+                if (allPropFlag) {
+                    dictList = res.data.map(item => ({
+                        ...item,
+                        label: item.name!,
+                        value: item.id!,
+                    }));
+                } else {
+                    dictList = res.data.map(item => ({
+                        label: item.name!,
+                        value: item.id!,
+                    }));
+                }
             }
             resolve(dictList)
         })

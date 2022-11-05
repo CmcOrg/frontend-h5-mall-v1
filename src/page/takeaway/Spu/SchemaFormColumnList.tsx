@@ -1,7 +1,9 @@
-import {YesNoDict} from "@/util/DictUtil";
+import {getByValueFromDictList, GetDictList, YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawaySpuInsertOrUpdateDTO} from "@/api/admin/TakeawaySpuController";
 import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
+import {TakeawayCategoryPage} from "@/api/admin/TakeawayCategoryController";
+import {OptionProps} from "antd/es/select";
 
 export const InitForm: TakeawaySpuInsertOrUpdateDTO = {} as TakeawaySpuInsertOrUpdateDTO
 
@@ -37,6 +39,27 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO
                     },
                 ],
             },
+        },
+
+        {
+            title: '关联分类',
+            dataIndex: 'categoryIdSet',
+            valueType: 'select',
+            fieldProps: {
+                showSearch: true,
+                mode: 'multiple',
+                maxTagCount: 'responsive',
+                optionLabelProp: 'children',
+                // @ts-ignore
+                optionItemRender: (item: OptionProps) => {
+                    return <div>
+                        {getByValueFromDictList(TakeawayCategorySceneTypeEnumSelectList, item.scene)}-{item.label}
+                    </div>
+                },
+            },
+            request: () => {
+                return GetDictList(TakeawayCategoryPage, true)
+            }
         },
 
         {
