@@ -33,6 +33,11 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawayCategoryInsertOrUpda
         },
 
         {
+            title: '排序号',
+            dataIndex: 'orderNo',
+        },
+
+        {
             title: '是否启用',
             dataIndex: 'enableFlag',
             valueEnum: YesNoDict,

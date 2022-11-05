@@ -231,7 +231,7 @@ function AdminLayoutElement(props: IAdminLayoutElement) {
                 />
             )}
         >
-            <PageContainer waterMarkProps={{content: CommonConstant.SYS_NAME}}>
+            <PageContainer>
                 <Outlet/>
             </PageContainer>
         </ProLayout>
