@@ -39,6 +39,7 @@ export interface TakeawayCategoryInsertOrUpdateDTO {
     name: string // 分类名称
     scene: 1 | 2 // 场景：1 堂食 2 外卖
     enableFlag?: boolean // 是否启用
+    remark?: string // 备注
     id?: number // 主键id {"min":1}
 }
 

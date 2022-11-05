@@ -39,6 +39,25 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawayCategoryInsertOrUpda
             valueType: 'switch',
         },
 
+        {
+            title: '备注',
+            dataIndex: 'remark',
+            valueType: 'textarea',
+            formItemProps: {
+                rules: [
+                    {
+                        whitespace: true,
+                        max: 300,
+                    },
+                ],
+            },
+            fieldProps: {
+                showCount: true,
+                maxLength: 300,
+                allowClear: true,
+            }
+        },
+
     ]
 }
 
