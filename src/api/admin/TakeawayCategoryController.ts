@@ -53,6 +53,7 @@ export function TakeawayCategoryInsertOrUpdate(form: TakeawayCategoryInsertOrUpd
 export interface TakeawayCategoryPageDTO {
     name?: string // 分类名称
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
+    remark?: string // 备注
     enableFlag?: boolean // 是否启用
     current?: number // 第几页
     pageSize?: number // 每页显示条数
