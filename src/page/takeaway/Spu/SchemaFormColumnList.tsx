@@ -14,7 +14,6 @@ export const InitForm: TakeawaySpuInsertOrUpdateDTO = {} as TakeawaySpuInsertOrU
 const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO>): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO>[] => {
 
     const takeawaySpecSelectListRef = useRef<TakeawaySpecDO[]>([])
-    // const [specCheckboxList, setSpecCheckboxList] = useState<DictStringListVO[]>([] as DictStringListVO[]);
 
     return [
 
@@ -140,56 +139,41 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
             },
             columns: ({specIdSet}: ({ specIdSet: number[] })): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO>[] => {
 
-                useForm.setFieldValue('specJsonListStrSet', '')
-                // setSpecCheckboxList([] as DictStringListVO[])
+                useForm.setFieldValue('specJsonListStr', '')
 
-                if (CollUtil.isNotEmpty(specIdSet)) {
+                setTimeout(() => {
+
+                    if (CollUtil.isEmpty(specIdSet)) {
+                        return
+                    }
+
                     const specMap = new Map<string, TakeawaySpecDO[]>();
                     takeawaySpecSelectListRef.current.forEach(item => {
                         if (!specIdSet.includes(item.id!)) {
                             return
                         }
                         const specList = specMap.get(item.typeName!);
-                        const tempItem = {typeName: item.typeName, name: item.name, orderNo: item.orderNo}
+                        const tempItem = {typeName: item.typeName, name: item.name}
                         if (CollUtil.isEmpty(specList)) {
                             specMap.set(item.typeName!, [tempItem]);
                         } else {
                             specList!.push(tempItem)
                         }
                     })
+
                     const specList: TakeawaySpecDO[][] = []
                     specMap.forEach((value) => {
                         specList.push(value)
                     })
 
-                    const descartesSpecList = CollUtil.descartes(specList);
+                    useForm.setFieldValue('specJsonListStr', JSON.stringify(CollUtil.descartes(specList)))
 
-                    // const tempSpecCheckboxList: DictStringListVO[] = [] as DictStringListVO[]
-
-                    // descartesSpecList.forEach((item, index) => {
-                    //     if (item instanceof Array) {
-                    //         const specList = item as TakeawaySpecDO[];
-                    //         const specStr = specList.sort((a, b) => a.orderNo! - b.orderNo!).map((subItem) => {
-                    //             return subItem.typeName + ":" + subItem.name
-                    //         }).join(";")
-                    //         tempSpecCheckboxList.push({label: specStr, value: specStr})
-                    //     } else {
-                    //         const specStr = item.typeName + ":" + item.name;
-                    //         tempSpecCheckboxList.push({label: specStr, value: specStr})
-                    //     }
-                    // })
-
-                    // setSpecCheckboxList(tempSpecCheckboxList)
-
-                    setTimeout(() => {
-                        useForm.setFieldValue('specJsonListStrSet', JSON.stringify(descartesSpecList))
-                    }, 20)
-                }
+                }, 20)
 
                 return [
                     {
                         title: '规格',
-                        dataIndex: 'specJsonListStrSet',
+                        dataIndex: 'specJsonListStr',
                         valueType: 'textarea',
                         fieldProps: {
                             allowClear: true,
@@ -202,15 +186,6 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
                             ],
                         },
                     },
-
-                    // {
-                    //     title: '规格列表',
-                    //     dataIndex: 'specCheckboxList',
-                    //     valueType: 'checkbox',
-                    //     fieldProps: {
-                    //         options: specCheckboxList,
-                    //     },
-                    // },
 
                 ]
             }

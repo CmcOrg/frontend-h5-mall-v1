@@ -18,7 +18,7 @@ export interface NotNullId {
 
 export interface TakeawaySpuInfoByIdVO {
     categoryIdSet?: number[] // 商品分类主键 idSet
-    specJsonListStrSet?: string[] // 规格 json对象集合字符串 set
+    specJsonListStr?: string // 规格 json对象集合字符串
     name?: string // SPU名称
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
     mustFlag?: boolean // 是否必选，即：不选无法下单
@@ -47,7 +47,7 @@ export interface TakeawaySpuInsertOrUpdateDTO {
     enableFlag?: boolean // 是否启用
     remark?: string // 备注
     categoryIdSet?: number[] // 商品分类主键 idSet
-    specJsonListStrSet: string[] // 规格 json对象集合字符串 set
+    specJsonListStr: string // 规格 json对象集合字符串
     id?: number // 主键id {"min":1}
 }
 
