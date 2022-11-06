@@ -2,17 +2,18 @@ import {getByValueFromDictList, GetDictList, YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawaySpuInsertOrUpdateDTO} from "@/api/admin/TakeawaySpuController";
 import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
-import {TakeawayCategoryDO, TakeawayCategoryPage} from "@/api/admin/TakeawayCategoryController";
+import {TakeawayCategoryPage} from "@/api/admin/TakeawayCategoryController";
 import {OptionProps} from "antd/es/select";
-import {TakeawaySpecPage} from "@/api/admin/TakeawaySpecController";
+import {TakeawaySpecDO, TakeawaySpecPage} from "@/api/admin/TakeawaySpecController";
 import {FormInstance} from "antd/es";
 import {useRef} from "react";
+import CollUtil from "@/util/CollUtil";
 
 export const InitForm: TakeawaySpuInsertOrUpdateDTO = {} as TakeawaySpuInsertOrUpdateDTO
 
 const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO>): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO>[] => {
 
-    const takeawayCategorySelectListRef = useRef<TakeawayCategoryDO[]>([])
+    const takeawaySpecSelectListRef = useRef<TakeawaySpecDO[]>([])
 
     return [
 
@@ -63,11 +64,8 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
                     </div>
                 },
             },
-            request: async () => {
-                await GetDictList(TakeawayCategoryPage, true).then(res => {
-                    takeawayCategorySelectListRef.current = res as TakeawayCategoryDO[]
-                })
-                return takeawayCategorySelectListRef.current
+            request: () => {
+                return GetDictList(TakeawayCategoryPage)
             }
         },
 
@@ -126,8 +124,11 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
                     </div>
                 },
             },
-            request: () => {
-                return GetDictList(TakeawaySpecPage, true)
+            request: async () => {
+                await GetDictList(TakeawaySpecPage, true).then(res => {
+                    takeawaySpecSelectListRef.current = res as TakeawaySpecDO[]
+                })
+                return takeawaySpecSelectListRef.current
             }
         },
 
@@ -138,8 +139,30 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
             },
             columns: ({specIdSet}: ({ specIdSet: number[] })): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO>[] => {
 
-                // takeawayCategorySelectListRef.current
-                // useForm.setFieldValue('', '')
+                setTimeout(() => {
+                    useForm.setFieldValue('specJsonListStrSet', '')
+                    if (CollUtil.isEmpty(specIdSet)) {
+                        return
+                    }
+                    const specMap = new Map<string, TakeawaySpecDO[]>();
+                    takeawaySpecSelectListRef.current.forEach(item => {
+                        if (!specIdSet.includes(item.id!)) {
+                            return
+                        }
+                        const specList = specMap.get(item.typeName!);
+                        const tempItem = {typeName: item.typeName, name: item.name}
+                        if (CollUtil.isEmpty(specList)) {
+                            specMap.set(item.typeName!, [tempItem]);
+                        } else {
+                            specList!.push(tempItem)
+                        }
+                    })
+                    const specList: TakeawaySpecDO[][] = []
+                    specMap.forEach((value) => {
+                        specList.push(value)
+                    })
+                    useForm.setFieldValue('specJsonListStrSet', JSON.stringify(CollUtil.descartes(specList)))
+                }, 20)
 
                 return [
                     {
