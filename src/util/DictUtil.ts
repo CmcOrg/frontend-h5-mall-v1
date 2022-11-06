@@ -74,6 +74,12 @@ export interface DictLongListVO {
     value: number // 传值用
 }
 
+// 通用的，获取字典集合，方法返回值
+export interface DictStringListVO {
+    label: string // 显示用
+    value: string // 传值用
+}
+
 // 通用的，获取字典集合，接口返回值
 interface IDictResult {
     name?: string

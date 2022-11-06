@@ -7,8 +7,8 @@ export default {
     isEmpty(arr?: any[]) {
         return !(this.isNotEmpty(arr))
     },
-    // 笛卡尔积：arr里面传入：[[],[],[]]，然后则会返回：[,,,]
-    descartes(arr?: any[]) {
+    // 笛卡尔积：arr里面传入二维数组：[[],[],[]]，然后则会返回：[,,,]
+    descartes<T>(arr?: T[][]): any[] {
         if (this.isEmpty(arr)) {
             return []
         }
