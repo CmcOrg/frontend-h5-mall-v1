@@ -109,7 +109,7 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
         },
 
         {
-            title: '关联规格',
+            title: '选择规格',
             dataIndex: 'specIdSet',
             valueType: 'select',
             fieldProps: {
@@ -141,9 +141,7 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
 
                 setTimeout(() => {
 
-                    useForm.setFieldValue('specJsonListStr', '')
-
-                    if (CollUtil.isEmpty(specIdSet)) {
+                    if (!specIdSet) {
                         return
                     }
 
@@ -177,6 +175,8 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
                         valueType: 'textarea',
                         fieldProps: {
                             allowClear: true,
+                            disabled: true,
+                            placeholder: '请选择规格'
                         },
                         formItemProps: {
                             rules: [
