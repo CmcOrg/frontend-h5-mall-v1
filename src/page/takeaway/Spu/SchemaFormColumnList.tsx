@@ -139,9 +139,9 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
             },
             columns: ({specIdSet}: ({ specIdSet: number[] })): ProFormColumnsType<TakeawaySpuInsertOrUpdateDTO>[] => {
 
-                useForm.setFieldValue('specJsonListStr', '')
-
                 setTimeout(() => {
+
+                    useForm.setFieldValue('specJsonListStr', '')
 
                     if (CollUtil.isEmpty(specIdSet)) {
                         return

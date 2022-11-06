@@ -7,13 +7,13 @@ export default {
     isEmpty(arr?: any[]) {
         return !(this.isNotEmpty(arr))
     },
-    // 笛卡尔积：arr里面传入二维数组：[[],[],[]]，然后则会返回：[,,,]
+    // 笛卡尔积：arr里面传入二维数组：[[],[],[]]，然后则会返回：[[,,],[,,],[,,],[,,]]
     descartes<T>(arr?: T[][]): any[] {
         if (this.isEmpty(arr)) {
-            return []
+            return [[]]
         }
         if (arr!.length < 2) {
-            return arr![0] || [];
+            return [arr![0]] || [[]];
         }
 
         return arr!.reduce((previousValue, currentValue) => {
