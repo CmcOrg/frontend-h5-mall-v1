@@ -17,7 +17,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawayCategoryIns
         width: 90,
     },
 
-    {title: '分类名称', dataIndex: 'name', ellipsis: true, width: 50,},
+    {title: '分类名称', dataIndex: 'name', ellipsis: true,},
 
     {
         title: '场景', dataIndex: 'scene', valueType: 'select',
@@ -49,7 +49,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawayCategoryIns
         valueEnum: YesNoDict
     },
 
-    {title: '备注', dataIndex: 'remark', ellipsis: true, width: 50,},
+    {title: '备注', dataIndex: 'remark', ellipsis: true, width: 90,},
 
     {
         title: '操作',
