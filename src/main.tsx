@@ -21,9 +21,6 @@ moment.locale('zh-cn');
 const consoleOldError = console.error
 
 console.error = (message?: any, ...optionalParams: any[]) => {
-    if (message === 'Warning: routes 将会废弃，为了保证兼容请使用 children 作为子节点定义方式') {
-        return // TODO：等 antd pro官方修复，然后删除
-    }
     if (message === 'Warning: [antd: Dropdown] `overlay` is deprecated. Please use `menu` instead.') {
         return // TODO：等 antd pro官方修复，然后删除
     }
