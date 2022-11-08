@@ -9,10 +9,12 @@ import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
 import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawayCategoryInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawayCategoryDO>[] => [
+
     {
         title: '序号',
         dataIndex: 'index',
         valueType: 'index',
+        width: 50,
     },
 
     {title: '分类名称', dataIndex: 'name', ellipsis: true, width: 50,},

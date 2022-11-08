@@ -5,10 +5,12 @@ import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
 import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySpuInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawaySpuDO>[] => [
+
     {
         title: '序号',
         dataIndex: 'index',
         valueType: 'index',
+        width: 50,
     },
 
     {title: 'SPU名称', dataIndex: 'name', ellipsis: true, width: 90,},
