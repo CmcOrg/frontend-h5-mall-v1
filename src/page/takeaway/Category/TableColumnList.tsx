@@ -14,7 +14,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawayCategoryIns
         title: '序号',
         dataIndex: 'index',
         valueType: 'index',
-        width: 50,
+        width: 90,
     },
 
     {title: '分类名称', dataIndex: 'name', ellipsis: true, width: 50,},
