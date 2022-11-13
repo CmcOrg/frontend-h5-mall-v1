@@ -13,6 +13,8 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySpuInsertOr
         width: 90,
     },
 
+    {title: '主键 id', dataIndex: 'id', ellipsis: true,},
+
     {title: 'SPU名称', dataIndex: 'name', ellipsis: true,},
 
     {

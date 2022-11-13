@@ -55,7 +55,8 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
     {
         title: '是否启用',
         dataIndex: 'enableFlag',
-        valueEnum: YesNoDict
+        valueEnum: YesNoDict,
+        width: 90,
     },
 
     {title: '备注', dataIndex: 'remark', ellipsis: true, width: 90,},

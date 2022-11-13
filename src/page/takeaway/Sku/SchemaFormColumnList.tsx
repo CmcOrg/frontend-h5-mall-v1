@@ -15,6 +15,7 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
                 rules: [
                     {
                         min: 1,
+                        required: true,
                     },
                 ],
             },
@@ -36,6 +37,13 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
         {
             title: '价格',
             dataIndex: 'price',
+            formItemProps: {
+                rules: [
+                    {
+                        required: true,
+                    },
+                ],
+            },
         },
 
         {

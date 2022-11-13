@@ -57,6 +57,7 @@ export function TakeawaySpuInsertOrUpdate(form: TakeawaySpuInsertOrUpdateDTO, co
 }
 
 export interface TakeawaySpuPageDTO {
+    id?: number // 主键id
     name?: string // SPU名称
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
     mustFlag?: boolean // 是否必选，即：不选无法下单
