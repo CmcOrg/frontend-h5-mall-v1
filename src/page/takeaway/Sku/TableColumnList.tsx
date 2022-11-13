@@ -2,6 +2,7 @@ import {YesNoDict} from "@/util/DictUtil";
 import {ActionType, ProColumns} from "@ant-design/pro-components";
 import {TakeawaySkuDeleteByIdSet, TakeawaySkuDO, TakeawaySkuInsertOrUpdateDTO} from "@/api/admin/TakeawaySkuController";
 import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
+import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawaySkuDO>[] => [
     {
@@ -13,7 +14,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {title: '关联SPU', dataIndex: 'spuId', ellipsis: true, width: 90,},
 
-    {title: '规格参数', dataIndex: 'spuSpecJsonListStr', ellipsis: true, width: 90,},
+    {title: '规格参数', dataIndex: 'spuSpecJsonListStr', ellipsis: true, width: 90, hideInSearch: true,},
 
     {title: '价格', dataIndex: 'price', ellipsis: true, width: 90, hideInSearch: true,},
 
@@ -27,7 +28,13 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {title: '打包价格', dataIndex: 'packagePrice', ellipsis: true, width: 90, hideInSearch: true,},
 
-    {title: '场景', dataIndex: 'scene', ellipsis: true, width: 90,},
+    {
+        title: '场景', dataIndex: 'scene', valueType: 'select',
+        fieldProps: {
+            showSearch: true,
+            options: TakeawayCategorySceneTypeEnumSelectList,
+        },
+    },
 
     {title: '备货时长', dataIndex: 'prepareS', ellipsis: true, width: 90, hideInSearch: true,},
 

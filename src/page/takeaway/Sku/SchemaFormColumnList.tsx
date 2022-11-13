@@ -1,6 +1,7 @@
 import {YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawaySkuInsertOrUpdateDTO} from "@/api/admin/TakeawaySkuController";
+import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 export const InitForm: TakeawaySkuInsertOrUpdateDTO = {} as TakeawaySkuInsertOrUpdateDTO
 
@@ -69,6 +70,18 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
         {
             title: '场景',
             dataIndex: 'scene',
+            valueType: 'select',
+            fieldProps: {
+                showSearch: true,
+                options: TakeawayCategorySceneTypeEnumSelectList,
+            },
+            formItemProps: {
+                rules: [
+                    {
+                        required: true,
+                    },
+                ],
+            },
         },
 
         {
