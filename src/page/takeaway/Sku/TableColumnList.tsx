@@ -3,6 +3,7 @@ import {ActionType, ProColumns} from "@ant-design/pro-components";
 import {TakeawaySkuDeleteByIdSet, TakeawaySkuDO, TakeawaySkuInsertOrUpdateDTO} from "@/api/admin/TakeawaySkuController";
 import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
 import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
+import {TakeawaySpecDO} from "@/api/admin/TakeawaySpecController";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawaySkuDO>[] => [
     {
@@ -14,7 +15,17 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {title: '关联SPU', dataIndex: 'spuId', ellipsis: true, width: 90,},
 
-    {title: '规格参数', dataIndex: 'spuSpecJsonListStr', ellipsis: true, width: 90, hideInSearch: true,},
+    {
+        title: '规格参数',
+        dataIndex: 'spuSpecJsonListStr',
+        ellipsis: true,
+        width: 90,
+        hideInSearch: true,
+        renderText: (text) => {
+            const specList = JSON.parse(text) as TakeawaySpecDO[];
+            return specList.map(item => item.typeName + ':' + item.name).join(';')
+        }
+    },
 
     {title: '价格', dataIndex: 'price', ellipsis: true, width: 90, hideInSearch: true,},
 
