@@ -75,9 +75,10 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
                                 await TakeawaySpuInfoById({id: spuId}).then(res => {
                                     const parseStrList: string[] = JSON.parse(res.specJsonListStr!);
                                     result = parseStrList.map(item => {
+                                        const jsonStr = JSON.stringify(item);
                                         return {
-                                            label: item,
-                                            value: item,
+                                            label: jsonStr,
+                                            value: jsonStr,
                                         }
                                     })
                                 })
