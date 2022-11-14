@@ -8,7 +8,7 @@ import {TakeawaySpecDO} from "@/api/admin/TakeawaySpecController";
 
 export const InitForm: TakeawaySkuInsertOrUpdateDTO = {} as TakeawaySkuInsertOrUpdateDTO
 
-const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO>[] => {
+const SchemaFormColumnList = (multipleFlag = false): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO>[] => {
 
     return [
 
@@ -44,6 +44,16 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
                 name: ['spuId'],
             },
             columns: ({spuId}: TakeawaySkuInsertOrUpdateDTO): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO>[] => {
+
+                let multipleObj = {}
+
+                if (multipleFlag) {
+                    multipleObj = {
+                        mode: 'multiple',
+                        maxTagCount: 'responsive',
+                    }
+                }
+
                 return [
                     {
                         title: '规格参数',
@@ -51,6 +61,7 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
                         valueType: 'select',
                         fieldProps: {
                             showSearch: true,
+                            ...multipleObj,
                             optionLabelProp: 'children',
                             // @ts-ignore
                             optionItemRender: (item: OptionProps) => {
@@ -67,7 +78,7 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
                                 }
                             ]
                         },
-                        params: new Date(),
+                        params: {spuId},
                         // @ts-ignore
                         request: async () => {
                             let result: DictStringListVO[] = []

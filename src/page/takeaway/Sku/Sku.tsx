@@ -1,7 +1,7 @@
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {ActionType, BetaSchemaForm, ColumnsState, ProTable} from "@ant-design/pro-components";
 import {Button, Form, Space} from "antd";
-import {PlusOutlined} from "@ant-design/icons/lib";
+import {PlusCircleOutlined, PlusOutlined} from "@ant-design/icons/lib";
 import {
     TakeawaySkuDeleteByIdSet,
     TakeawaySkuDO,
@@ -27,7 +27,11 @@ export default function () {
 
     const [useForm] = Form.useForm<TakeawaySkuInsertOrUpdateDTO>();
 
+    const [useForm2] = Form.useForm<TakeawaySkuInsertOrUpdateDTO>();
+
     const [formVisible, setFormVisible] = useState<boolean>(false);
+
+    const [form2Visible, setForm2Visible] = useState<boolean>(false);
 
     const currentForm = useRef<TakeawaySkuInsertOrUpdateDTO>({} as TakeawaySkuInsertOrUpdateDTO)
 
@@ -64,6 +68,10 @@ export default function () {
                 }}
                 toolbar={{
                     actions: [
+                        <Button key={"2"} icon={<PlusCircleOutlined/>} onClick={() => {
+                            currentForm.current = {} as TakeawaySkuInsertOrUpdateDTO
+                            setForm2Visible(true)
+                        }}>批量新建</Button>,
                         <Button key={"1"} icon={<PlusOutlined/>} type="primary" onClick={() => {
                             currentForm.current = {} as TakeawaySkuInsertOrUpdateDTO
                             setFormVisible(true)
@@ -127,7 +135,7 @@ export default function () {
                                             ToastSuccess(res.msg)
                                             actionRef.current?.reload()
                                         })
-                                    }, undefined, `确定删除【${currentForm.current.name}】吗？`)
+                                    }, undefined, `确定删除【${currentForm.current.id}】吗？`)
                                 }}>
                                 删除
                             </Button> : null
@@ -151,6 +159,39 @@ export default function () {
                 visible={formVisible}
                 onVisibleChange={setFormVisible}
                 columns={SchemaFormColumnList()}
+                onFinish={async (form) => {
+                    await TakeawaySkuInsertOrUpdate({...currentForm.current, ...form}).then(res => {
+                        ToastSuccess(res.msg)
+                        actionRef.current?.reload()
+                    })
+                    return true
+                }}
+            />
+
+            <BetaSchemaForm<TakeawaySkuInsertOrUpdateDTO>
+                title={"批量新建商品SKU"}
+                layoutType={"ModalForm"}
+                grid
+                rowProps={{
+                    gutter: 16
+                }}
+                colProps={{
+                    span: 12
+                }}
+                modalProps={{
+                    maskClosable: false,
+                }}
+                form={useForm2}
+                isKeyPressSubmit
+                params={new Date()} // 目的：为了打开页面时，执行 request方法
+                request={async () => {
+                    useForm2.resetFields()
+                    useForm2.setFieldsValue(currentForm.current) // 组件会深度克隆 currentForm.current
+                    return InitForm
+                }}
+                visible={form2Visible}
+                onVisibleChange={setForm2Visible}
+                columns={SchemaFormColumnList(true)}
                 onFinish={async (form) => {
                     await TakeawaySkuInsertOrUpdate({...currentForm.current, ...form}).then(res => {
                         ToastSuccess(res.msg)
