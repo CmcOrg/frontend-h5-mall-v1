@@ -54,7 +54,7 @@ const SchemaFormColumnList = (multipleFlag = false): ProFormColumnsType<Takeaway
                 return [
                     {
                         title: '规格参数',
-                        dataIndex: 'spuSpecJsonListStr',
+                        dataIndex: 'spuSpecJsonListStrSet',
                         valueType: 'select',
                         fieldProps: {
                             showSearch: true,

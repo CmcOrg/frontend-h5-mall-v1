@@ -27,8 +27,9 @@ export interface TakeawaySkuDO {
     packagePrice?: number // 打包价格
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
     prepareS?: number // 备货时长（秒）
-    spuFullName?: string // spu名称
     number?: number // 库存
+    spuFullName?: string // spu名称
+    spuSpecJsonListStrSet?: string[] // 规格 json对象集合字符串，例如：[{}]，set
     id?: number // 主键id
     createId?: number // 创建人id
     createTime?: string // 创建时间
