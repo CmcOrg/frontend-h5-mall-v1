@@ -1,6 +1,9 @@
-import {YesNoDict} from "@/util/DictUtil";
+import {getByValueFromDictList, GetDictList, YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawaySkuInsertOrUpdateDTO} from "@/api/admin/TakeawaySkuController";
+import {TakeawaySpuPage} from "@/api/admin/TakeawaySpuController";
+import {OptionProps} from "antd/es/select";
+import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
 
 export const InitForm: TakeawaySkuInsertOrUpdateDTO = {} as TakeawaySkuInsertOrUpdateDTO
 
@@ -10,14 +13,27 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
         {
             title: '关联SPU',
             dataIndex: 'spuId',
+            valueType: 'select',
             formItemProps: {
                 rules: [
                     {
-                        min: 1,
                         required: true,
                     },
                 ],
             },
+            fieldProps: {
+                showSearch: true,
+                optionLabelProp: 'children',
+                // @ts-ignore
+                optionItemRender: (item: OptionProps) => {
+                    return <div>
+                        {getByValueFromDictList(TakeawayCategorySceneTypeEnumSelectList, item.scene)}-{item.label}
+                    </div>
+                },
+            },
+            request: () => {
+                return GetDictList(TakeawaySpuPage, true)
+            }
         },
 
         {
