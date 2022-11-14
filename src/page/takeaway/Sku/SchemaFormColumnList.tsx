@@ -45,13 +45,10 @@ const SchemaFormColumnList = (multipleFlag = false): ProFormColumnsType<Takeaway
             },
             columns: ({spuId}: TakeawaySkuInsertOrUpdateDTO): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO>[] => {
 
-                let multipleObj = {}
+                let max: number | undefined = 1
 
                 if (multipleFlag) {
-                    multipleObj = {
-                        mode: 'multiple',
-                        maxTagCount: 'responsive',
-                    }
+                    max = undefined
                 }
 
                 return [
@@ -61,7 +58,8 @@ const SchemaFormColumnList = (multipleFlag = false): ProFormColumnsType<Takeaway
                         valueType: 'select',
                         fieldProps: {
                             showSearch: true,
-                            ...multipleObj,
+                            mode: 'multiple',
+                            maxTagCount: 'responsive',
                             optionLabelProp: 'children',
                             // @ts-ignore
                             optionItemRender: (item: OptionProps) => {
@@ -74,7 +72,9 @@ const SchemaFormColumnList = (multipleFlag = false): ProFormColumnsType<Takeaway
                         formItemProps: {
                             rules: [
                                 {
-                                    required: true
+                                    required: true,
+                                    type: 'array',
+                                    max,
                                 }
                             ]
                         },

@@ -47,7 +47,7 @@ export function TakeawaySkuInfoById(form: NotNullId, config?: AxiosRequestConfig
 
 export interface TakeawaySkuInsertOrUpdateDTO {
     spuId?: number // SPU 主键 id（外键） {"min":1}
-    spuSpecJsonListStr: string // 规格 json对象集合字符串，例如：[{}]
+    spuSpecJsonListStrSet: string[] // 规格 json对象集合字符串，例如：[{}]，set
     price?: number // 价格
     minBuyNumber?: number // 最低购买数量
     maxBuyNumber?: number // 最高购买数量
