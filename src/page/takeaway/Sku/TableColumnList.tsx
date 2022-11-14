@@ -27,17 +27,17 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         }
     },
 
-    {title: '价格', dataIndex: 'price', ellipsis: true, width: 90, hideInSearch: true,},
+    {title: '价格', dataIndex: 'price', ellipsis: true, width: 90, hideInSearch: true, valueType: 'money',},
 
     {title: '最低购买', dataIndex: 'minBuyNumber', ellipsis: true, width: 90, hideInSearch: true,},
 
     {title: '最高购买', dataIndex: 'maxBuyNumber', ellipsis: true, width: 90, hideInSearch: true,},
 
-    {title: '优惠价格', dataIndex: 'discountPrice', ellipsis: true, width: 90, hideInSearch: true,},
+    {title: '优惠价格', dataIndex: 'discountPrice', ellipsis: true, width: 90, hideInSearch: true, valueType: 'money',},
 
     {title: '优惠个数', dataIndex: 'discountNumber', ellipsis: true, width: 90, hideInSearch: true,},
 
-    {title: '打包价格', dataIndex: 'packagePrice', ellipsis: true, width: 90, hideInSearch: true,},
+    {title: '打包价格', dataIndex: 'packagePrice', ellipsis: true, width: 90, hideInSearch: true, valueType: 'money',},
 
     {
         title: '场景', dataIndex: 'scene', valueType: 'select',
