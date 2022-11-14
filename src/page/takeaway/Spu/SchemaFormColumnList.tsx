@@ -65,7 +65,7 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
                 },
             },
             request: () => {
-                return GetDictList(TakeawayCategoryPage)
+                return GetDictList(TakeawayCategoryPage, true)
             }
         },
 
