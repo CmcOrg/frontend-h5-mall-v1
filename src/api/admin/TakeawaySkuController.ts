@@ -27,7 +27,8 @@ export interface TakeawaySkuDO {
     packagePrice?: number // 打包价格
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
     prepareS?: number // 备货时长（秒）
-    spuName?: string // spu名称
+    spuFullName?: string // spu名称
+    number?: number // 库存
     id?: number // 主键id
     createId?: number // 创建人id
     createTime?: string // 创建时间
@@ -54,6 +55,7 @@ export interface TakeawaySkuInsertOrUpdateDTO {
     discountNumber?: number // 优惠个数
     packagePrice?: number // 打包价格
     prepareS?: number // 备货时长（秒）
+    number?: number // 库存
     enableFlag?: boolean // 是否启用
     remark?: string // 备注
     id?: number // 主键id {"min":1}

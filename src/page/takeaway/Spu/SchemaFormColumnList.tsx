@@ -176,7 +176,8 @@ const SchemaFormColumnList = (useForm: FormInstance<TakeawaySpuInsertOrUpdateDTO
                         fieldProps: {
                             allowClear: true,
                             disabled: true,
-                            placeholder: '请选择规格'
+                            placeholder: '请选择规格',
+                            autoSize: true,
                         },
                         formItemProps: {
                             rules: [

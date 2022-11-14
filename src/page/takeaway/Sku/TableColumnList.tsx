@@ -39,6 +39,8 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {title: '价格', dataIndex: 'price', ellipsis: true, width: 90, hideInSearch: true, valueType: 'money',},
 
+    {title: '库存', dataIndex: 'number', ellipsis: true, width: 90, hideInSearch: true,},
+
     {title: '最低购买', dataIndex: 'minBuyNumber', ellipsis: true, width: 90, hideInSearch: true,},
 
     {title: '最高购买', dataIndex: 'maxBuyNumber', ellipsis: true, width: 90, hideInSearch: true,},
@@ -78,6 +80,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         title: '操作',
         dataIndex: 'option',
         valueType: 'option',
+        fixed: 'right',
         render: (dom, entity) => [
             <a key="1" onClick={() => {
                 currentForm.current = {id: entity.id} as TakeawaySkuInsertOrUpdateDTO

@@ -103,6 +103,12 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
         },
 
         {
+            title: '库存',
+            dataIndex: 'number',
+            tooltip: '-1 表示：无限制',
+        },
+
+        {
             title: '最低购买',
             dataIndex: 'minBuyNumber',
             tooltip: '单次最低购买的数量',
