@@ -1,13 +1,15 @@
-import {getByValueFromDictList, GetDictList, YesNoDict} from "@/util/DictUtil";
+import {DictStringListVO, getByValueFromDictList, GetDictList, YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawaySkuInsertOrUpdateDTO} from "@/api/admin/TakeawaySkuController";
-import {TakeawaySpuPage} from "@/api/admin/TakeawaySpuController";
+import {TakeawaySpuInfoById, TakeawaySpuPage} from "@/api/admin/TakeawaySpuController";
 import {OptionProps} from "antd/es/select";
 import {TakeawayCategorySceneTypeEnumSelectList} from "@/page/takeaway/Category/Enums";
+import {TakeawaySpecDO} from "@/api/admin/TakeawaySpecController";
 
 export const InitForm: TakeawaySkuInsertOrUpdateDTO = {} as TakeawaySkuInsertOrUpdateDTO
 
 const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO>[] => {
+
     return [
 
         {
@@ -37,16 +39,54 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO
         },
 
         {
-            title: '规格参数',
-            dataIndex: 'spuSpecJsonListStr',
-            formItemProps: {
-                rules: [
-                    {
-                        required: true,
-                        whitespace: true,
-                    },
-                ],
+            valueType: 'dependency',
+            fieldProps: {
+                name: ['spuId'],
             },
+            columns: ({spuId}: TakeawaySkuInsertOrUpdateDTO): ProFormColumnsType<TakeawaySkuInsertOrUpdateDTO>[] => {
+                return [
+                    {
+                        title: '规格参数',
+                        dataIndex: 'spuSpecJsonListStr',
+                        valueType: 'select',
+                        fieldProps: {
+                            showSearch: true,
+                            optionLabelProp: 'children',
+                            // @ts-ignore
+                            optionItemRender: (item: OptionProps) => {
+                                const specList = JSON.parse(item.label) as TakeawaySpecDO[];
+                                return <div>
+                                    {specList.map(item => item.typeName + ':' + item.name).join(';')}
+                                </div>
+                            },
+                        },
+                        formItemProps: {
+                            rules: [
+                                {
+                                    required: true
+                                }
+                            ]
+                        },
+                        params: new Date(),
+                        // @ts-ignore
+                        request: async () => {
+                            let result: DictStringListVO[] = []
+                            if (spuId) {
+                                await TakeawaySpuInfoById({id: spuId}).then(res => {
+                                    const parseStrList: string[] = JSON.parse(res.specJsonListStr!);
+                                    result = parseStrList.map(item => {
+                                        return {
+                                            label: item,
+                                            value: item,
+                                        }
+                                    })
+                                })
+                            }
+                            return result
+                        }
+                    },
+                ]
+            }
         },
 
         {
