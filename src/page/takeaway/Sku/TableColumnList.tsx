@@ -15,6 +15,16 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {title: '关联SPU', dataIndex: 'spuId', ellipsis: true, width: 90,},
 
+    {title: 'SPU名称', dataIndex: 'spuFullName', ellipsis: true, width: 90, hideInSearch: true,},
+
+    {
+        title: '场景', dataIndex: 'scene', valueType: 'select',
+        fieldProps: {
+            showSearch: true,
+            options: TakeawayCategorySceneTypeEnumSelectList,
+        },
+    },
+
     {
         title: '规格参数',
         dataIndex: 'spuSpecJsonListStr',
@@ -38,14 +48,6 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
     {title: '优惠个数', dataIndex: 'discountNumber', ellipsis: true, width: 90, hideInSearch: true,},
 
     {title: '打包价格', dataIndex: 'packagePrice', ellipsis: true, width: 90, hideInSearch: true, valueType: 'money',},
-
-    {
-        title: '场景', dataIndex: 'scene', valueType: 'select',
-        fieldProps: {
-            showSearch: true,
-            options: TakeawayCategorySceneTypeEnumSelectList,
-        },
-    },
 
     {title: '备货时长', dataIndex: 'prepareS', ellipsis: true, width: 90, hideInSearch: true,},
 
