@@ -30,7 +30,6 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         dataIndex: 'spuSpecJsonListStr',
         ellipsis: true,
         width: 90,
-        hideInSearch: true,
         renderText: (text) => {
             const specList = JSON.parse(text) as TakeawaySpecDO[];
             return specList.map(item => item.typeName + ':' + item.name).join(';')

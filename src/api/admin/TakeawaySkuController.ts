@@ -70,6 +70,7 @@ export function TakeawaySkuInsertOrUpdate(form: TakeawaySkuInsertOrUpdateDTO, co
 export interface TakeawaySkuPageDTO {
     spuId?: number // SPU 主键 id（外键）
     scene?: 1 | 2 // 场景：1 堂食 2 外卖
+    spuSpecJsonListStr?: string // 规格 json对象集合字符串，例如：[{}]
     enableFlag?: boolean // 是否启用
     remark?: string // 备注
     current?: number // 第几页
