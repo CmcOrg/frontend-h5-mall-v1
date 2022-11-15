@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import {ActionType, BetaSchemaForm, ColumnsState, ProTable} from "@ant-design/pro-components";
 import {Button, Form, Space} from "antd";
-import {PlusCircleOutlined, PlusOutlined} from "@ant-design/icons/lib";
+import {PlusOutlined} from "@ant-design/icons/lib";
 import {
     TakeawaySkuDeleteByIdSet,
     TakeawaySkuDO,
@@ -68,13 +68,9 @@ export default function () {
                 }}
                 toolbar={{
                     actions: [
-                        <Button key={"2"} icon={<PlusCircleOutlined/>} onClick={() => {
-                            currentForm.current = {} as TakeawaySkuInsertOrUpdateDTO
-                            setForm2Visible(true)
-                        }}>批量新建</Button>,
                         <Button key={"1"} icon={<PlusOutlined/>} type="primary" onClick={() => {
                             currentForm.current = {} as TakeawaySkuInsertOrUpdateDTO
-                            setFormVisible(true)
+                            setForm2Visible(true)
                         }}>新建</Button>
                     ],
                 }}
