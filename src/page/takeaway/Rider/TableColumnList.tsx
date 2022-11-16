@@ -15,7 +15,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawayRiderInsert
         width: 90,
     },
 
-    {title: '用户主键 id', dataIndex: 'userId', ellipsis: true, width: 90,},
+    {title: '用户主键id', dataIndex: 'userId', ellipsis: true, width: 90,},
 
     {title: '姓名', dataIndex: 'name', ellipsis: true, width: 90,},
 
