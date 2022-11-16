@@ -10,7 +10,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         title: '序号',
         dataIndex: 'index',
         valueType: 'index',
-        width: 90,
+        width: 60,
     },
 
     {title: '关联SPU', dataIndex: 'spuId', ellipsis: true, width: 90,},
@@ -19,6 +19,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {
         title: '场景', dataIndex: 'scene', valueType: 'select',
+        width: 60,
         fieldProps: {
             showSearch: true,
             options: TakeawayCategorySceneTypeEnumSelectList,
@@ -53,6 +54,13 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
     {title: '备货时长', dataIndex: 'prepareS', ellipsis: true, width: 90, hideInSearch: true,},
 
     {
+        title: '是否启用',
+        dataIndex: 'enableFlag',
+        valueEnum: YesNoDict,
+        width: 90,
+    },
+
+    {
         title: '创建时间',
         dataIndex: 'createTime',
         hideInSearch: true,
@@ -64,13 +72,6 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         dataIndex: 'updateTime',
         hideInSearch: true,
         valueType: 'fromNow',
-    },
-
-    {
-        title: '是否启用',
-        dataIndex: 'enableFlag',
-        valueEnum: YesNoDict,
-        width: 90,
     },
 
     {title: '备注', dataIndex: 'remark', ellipsis: true, width: 90,},
