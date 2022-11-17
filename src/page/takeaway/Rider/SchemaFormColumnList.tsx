@@ -1,6 +1,7 @@
-import {YesNoDict} from "@/util/DictUtil";
+import {GetDictList, YesNoDict} from "@/util/DictUtil";
 import {ProFormColumnsType} from "@ant-design/pro-components";
 import {TakeawayRiderInsertOrUpdateDTO} from "@/api/admin/TakeawayRiderController";
+import {SysUserDictList} from "@/api/admin/SysUserController";
 
 export const InitForm: TakeawayRiderInsertOrUpdateDTO = {} as TakeawayRiderInsertOrUpdateDTO
 
@@ -18,6 +19,13 @@ const SchemaFormColumnList = (): ProFormColumnsType<TakeawayRiderInsertOrUpdateD
                     },
                 ],
             },
+            valueType: 'select',
+            fieldProps: {
+                showSearch: true,
+            },
+            request: () => {
+                return GetDictList(SysUserDictList)
+            }
         },
 
         {

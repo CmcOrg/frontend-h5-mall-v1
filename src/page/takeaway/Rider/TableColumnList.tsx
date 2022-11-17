@@ -1,4 +1,4 @@
-import {YesNoDict} from "@/util/DictUtil";
+import {GetDictList, YesNoDict} from "@/util/DictUtil";
 import {ActionType, ProColumns} from "@ant-design/pro-components";
 import {
     TakeawayRiderDeleteByIdSet,
@@ -6,6 +6,7 @@ import {
     TakeawayRiderInsertOrUpdateDTO
 } from "@/api/admin/TakeawayRiderController";
 import {ExecConfirm, ToastSuccess} from "@/util/ToastUtil";
+import {SysUserDictList} from "@/api/admin/SysUserController";
 
 const TableColumnList = (currentForm: React.MutableRefObject<TakeawayRiderInsertOrUpdateDTO | null>, setFormVisible: React.Dispatch<React.SetStateAction<boolean>>, actionRef: React.RefObject<ActionType>): ProColumns<TakeawayRiderDO>[] => [
     {
@@ -15,7 +16,15 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawayRiderInsert
         width: 90,
     },
 
-    {title: '用户主键id', dataIndex: 'userId', ellipsis: true, width: 90,},
+    {
+        title: '关联用户', dataIndex: 'userId', ellipsis: true, width: 90, valueType: 'select',
+        fieldProps: {
+            showSearch: true,
+        },
+        request: () => {
+            return GetDictList(SysUserDictList)
+        }
+    },
 
     {title: '姓名', dataIndex: 'name', ellipsis: true, width: 90,},
 
