@@ -1,28 +1,14 @@
 import {LockOutlined, UserOutlined,} from '@ant-design/icons';
-import {
-    LoginForm,
-    ModalForm,
-    ProFormCaptcha,
-    ProFormCheckbox,
-    ProFormInstance,
-    ProFormText,
-} from '@ant-design/pro-components';
+import {LoginForm, ProFormCheckbox, ProFormText,} from '@ant-design/pro-components';
 import {Tabs} from 'antd';
-import {useRef, useState} from 'react';
+import {useState} from 'react';
 import ViteSvg from '../../../../public/vite.svg'
 import SignLayout from "@/layout/SignLayout/SignLayout";
 import CommonConstant from "@/model/constant/CommonConstant";
 import {SignInFormHandler} from "@/page/sign/SignIn/SignInUtil";
 import {getAppNav} from "@/App";
 import PathConstant from "@/model/constant/PathConstant";
-import {
-    SignEmailForgotPassword,
-    SignEmailForgotPasswordDTO,
-    SignEmailForgotPasswordSendCode
-} from "@/api/sign/SignEmailController";
-import {PasswordRSAEncrypt, RSAEncrypt} from "@/util/RsaUtil";
-import {ToastSuccess} from "@/util/ToastUtil";
-import {ValidatorUtil} from "@/util/ValidatorUtil";
+import {SIGN_UP_FLAG} from "@/page/sign/SignUp/SignUp";
 
 type TSignInType = 'account'; // 登录方式
 
@@ -30,6 +16,8 @@ export interface ISignInForm {
     account: string // 账号
     password: string // 密码
 }
+
+export const ACCOUNT_PLACEHOLDER = "登录名/手机号";
 
 // 登录
 export default function () {
@@ -41,8 +29,13 @@ export default function () {
                 title={CommonConstant.SYS_NAME}
                 subTitle="Will have the most powerful !"
                 actions={
-                    <div>或者 <a title={"注册"} onClick={() => getAppNav()(PathConstant.SIGN_UP_PATH)}>注册</a>
-                    </div>
+                    <>
+                        {
+                            SIGN_UP_FLAG ?
+                                <div>或者 <a title={"注册"} onClick={() => getAppNav()(PathConstant.SIGN_UP_PATH)}>注册</a>
+                                </div> : null
+                        }
+                    </>
                 }
                 onFinish={async (form) => {
                     await SignInFormHandler(form)
@@ -61,11 +54,11 @@ export default function () {
                                 allowClear: true,
                                 prefix: <UserOutlined/>,
                             }}
-                            placeholder={"登录名/邮箱"}
+                            placeholder={ACCOUNT_PLACEHOLDER}
                             rules={[
                                 {
                                     required: true,
-                                    message: '请输入登录名/邮箱'
+                                    message: '请输入' + ACCOUNT_PLACEHOLDER
                                 },
                             ]}
                         />
@@ -93,73 +86,73 @@ export default function () {
                     <ProFormCheckbox noStyle>
                         记住我
                     </ProFormCheckbox>
-                    <UserForgotPasswordModalForm/>
+                    {/*<UserForgotPasswordModalForm/>*/}
                 </div>
             </LoginForm>
         </SignLayout>
     )
 }
 
-const userForgotPasswordModalTitle = "忘记密码了"
-
-export function UserForgotPasswordModalForm() {
-
-    const formRef = useRef<ProFormInstance<SignEmailForgotPasswordDTO>>();
-
-    return <ModalForm<SignEmailForgotPasswordDTO>
-        modalProps={{
-            maskClosable: false
-        }}
-        formRef={formRef}
-        width={CommonConstant.MODAL_FORM_WIDTH}
-        title={userForgotPasswordModalTitle}
-        trigger={<a>{userForgotPasswordModalTitle}</a>}
-        onFinish={async (form) => {
-            const formTemp = {...form}
-            formTemp.origNewPassword = RSAEncrypt(formTemp.newPassword)
-            formTemp.newPassword = PasswordRSAEncrypt(formTemp.newPassword)
-            await SignEmailForgotPassword(formTemp).then(res => {
-                ToastSuccess(res.msg)
-            })
-            return true
-        }}
-    >
-        <ProFormText
-            name="email"
-            fieldProps={{
-                allowClear: true,
-            }}
-            required
-            label="邮箱"
-            placeholder={'请输入邮箱'}
-            rules={[{validator: ValidatorUtil.emailValidate}]}
-        />
-        <ProFormCaptcha
-            fieldProps={{
-                maxLength: 6,
-                allowClear: true,
-            }}
-            required
-            label="验证码"
-            placeholder={'请输入验证码'}
-            name="code"
-            rules={[{validator: ValidatorUtil.codeValidate}]}
-            onGetCaptcha={async () => {
-                await formRef.current?.validateFields(['email']).then(async res => {
-                    await SignEmailForgotPasswordSendCode({email: res.email}).then(res => {
-                        ToastSuccess(res.msg)
-                    })
-                })
-            }}
-        />
-        <ProFormText
-            label="新密码"
-            placeholder={'请输入新密码'}
-            name="newPassword"
-            required
-            fieldProps={{
-                allowClear: true,
-            }}
-            rules={[{validator: ValidatorUtil.passwordValidate}]}/>
-    </ModalForm>
-}
+// const UserForgotPasswordModalTitle = "忘记密码了"
+//
+// export function UserForgotPasswordModalForm() {
+//
+//     const formRef = useRef<ProFormInstance<SignEmailForgotPasswordDTO>>();
+//
+//     return <ModalForm<SignEmailForgotPasswordDTO>
+//         modalProps={{
+//             maskClosable: false
+//         }}
+//         formRef={formRef}
+//         width={CommonConstant.MODAL_FORM_WIDTH}
+//         title={UserForgotPasswordModalTitle}
+//         trigger={<a>{UserForgotPasswordModalTitle}</a>}
+//         onFinish={async (form) => {
+//             const formTemp = {...form}
+//             formTemp.origNewPassword = RSAEncrypt(formTemp.newPassword)
+//             formTemp.newPassword = PasswordRSAEncrypt(formTemp.newPassword)
+//             await SignEmailForgotPassword(formTemp).then(res => {
+//                 ToastSuccess(res.msg)
+//             })
+//             return true
+//         }}
+//     >
+//         <ProFormText
+//             name="email"
+//             fieldProps={{
+//                 allowClear: true,
+//             }}
+//             required
+//             label="邮箱"
+//             placeholder={'请输入邮箱'}
+//             rules={[{validator: ValidatorUtil.emailValidate}]}
+//         />
+//         <ProFormCaptcha
+//             fieldProps={{
+//                 maxLength: 6,
+//                 allowClear: true,
+//             }}
+//             required
+//             label="验证码"
+//             placeholder={'请输入验证码'}
+//             name="code"
+//             rules={[{validator: ValidatorUtil.codeValidate}]}
+//             onGetCaptcha={async () => {
+//                 await formRef.current?.validateFields(['email']).then(async res => {
+//                     await SignEmailForgotPasswordSendCode({email: res.email}).then(res => {
+//                         ToastSuccess(res.msg)
+//                     })
+//                 })
+//             }}
+//         />
+//         <ProFormText
+//             label="新密码"
+//             placeholder={'请输入新密码'}
+//             name="newPassword"
+//             required
+//             fieldProps={{
+//                 allowClear: true,
+//             }}
+//             rules={[{validator: ValidatorUtil.passwordValidate}]}/>
+//     </ModalForm>
+// }

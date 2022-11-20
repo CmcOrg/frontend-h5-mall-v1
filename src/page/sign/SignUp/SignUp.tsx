@@ -9,8 +9,18 @@ import {getAppNav} from "@/App";
 import PathConstant from "@/model/constant/PathConstant";
 import {SendCode, SignUpFormHandler} from "@/page/sign/SignUp/SignUpUtil";
 import {ValidatorUtil} from "@/util/ValidatorUtil";
+import {Navigate} from "react-router-dom";
 
-type TSignUpType = '0' | '1'; // 注册方式
+// 是否允许：邮箱注册
+export const EMAIL_SIGN_UP_FLAG: boolean = false;
+// 是否允许：登录名注册
+export const SIGN_IN_NAME_SIGN_UP_FLAG: boolean = false;
+// 是否允许：手机注册
+export const PHONE_SIGN_UP_FLAG: boolean = false;
+// 允许注册
+export const SIGN_UP_FLAG: boolean = EMAIL_SIGN_UP_FLAG || SIGN_IN_NAME_SIGN_UP_FLAG || PHONE_SIGN_UP_FLAG;
+
+type TSignUpType = '0' | '1' | '2'; // 注册方式
 
 export interface ISignUpForm {
     account: string // 账号
@@ -20,10 +30,15 @@ export interface ISignUpForm {
     type: TSignUpType // 注册方式
 }
 
-const signUpTypeArr = ['登录名', '邮箱']
+const signUpTypeArr = ['登录名', '邮箱', '手机号']
 
 // 注册
 export default function () {
+
+    if (!SIGN_UP_FLAG) {
+        return <Navigate to={PathConstant.SIGN_IN_PATH}/>
+    }
+
     const [activeKey, setActiveKey] = useState<TSignUpType>('0');
     const formRef = useRef<ProFormInstance<ISignUpForm>>(null);
     return (
@@ -79,7 +94,7 @@ export default function () {
                     ]}
                 />
                 {
-                    activeKey === '1' && (<>
+                    (activeKey === '1' || activeKey === '2') && (<>
                         <ProFormCaptcha
                             fieldProps={{
                                 size: 'large',

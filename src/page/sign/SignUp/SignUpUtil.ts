@@ -3,7 +3,7 @@ import {ApiResultVO} from "@/util/HttpUtil";
 import PathConstant from "@/model/constant/PathConstant";
 import {ToastSuccess} from "@/util/ToastUtil";
 import {getAppNav} from "@/App";
-import {SignEmailSignUp, SignEmailSignUpSendCode} from "@/api/sign/SignEmailController";
+// import {SignEmailSignUp, SignEmailSignUpSendCode} from "@/api/sign/SignEmailController";
 import {ISignUpForm} from "@/page/sign/SignUp/SignUp";
 import {SignSignInNameSignUp} from "@/api/sign/SignSignInNameController";
 
@@ -16,9 +16,9 @@ export async function SignUpFormHandler(form: ISignUpForm) {
     const password = PasswordRSAEncrypt(form.password)
 
     if (form.type === '1') { // 如果是：邮箱
-        await SignEmailSignUp({email: form.account, password, origPassword, code: form.code!}).then(res => {
-            SignUpSuccess(res)
-        })
+        // await SignEmailSignUp({email: form.account, password, origPassword, code: form.code!}).then(res => {
+        //     SignUpSuccess(res)
+        // })
     } else {
         await SignSignInNameSignUp({signInName: form.account, password, origPassword}).then(res => {
             SignUpSuccess(res)
@@ -43,9 +43,9 @@ export async function SendCode(form: ISignUpForm) {
     }
 
     if (form.type === '1') { // 如果是：邮箱
-        await SignEmailSignUpSendCode({email: form.account}).then(res => {
-            ToastSuccess(res.msg)
-        })
+        // await SignEmailSignUpSendCode({email: form.account}).then(res => {
+        //     ToastSuccess(res.msg)
+        // })
     }
 
 }
