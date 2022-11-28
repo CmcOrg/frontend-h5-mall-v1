@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import {Provider} from "react-redux";
 import store from "@/store";
-import moment from 'moment';
-import 'moment/dist/locale/zh-cn';
-import 'antd/dist/antd.variable.min.css';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import {BackTop, ConfigProvider} from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
+import zhCN from 'antd/locale/zh_CN';
+import 'antd/dist/reset.css';
 // 引入：自定义样式
 import './style/color.less'
 import './style/layout.less'
@@ -15,7 +15,7 @@ import './style/size.less'
 import './style/antd.less'
 import './style/theme.less'
 
-moment.locale('zh-cn');
+dayjs.locale('zh-cn');
 
 // 自定义 console.error ↓
 const consoleOldError = console.error
