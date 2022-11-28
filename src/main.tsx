@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import store from "@/store";
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import {BackTop, ConfigProvider} from 'antd';
+import {ConfigProvider, FloatButton} from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import 'antd/dist/reset.css';
 // 引入：自定义样式
@@ -21,9 +21,6 @@ dayjs.locale('zh-cn');
 const consoleOldError = console.error
 
 console.error = (message?: any, ...optionalParams: any[]) => {
-    if (message === 'Warning: [antd: Dropdown] `overlay` is deprecated. Please use `menu` instead.') {
-        return // TODO：等 antd pro官方修复，然后删除
-    }
     consoleOldError(message, ...optionalParams)
 }
 // 自定义 console.error ↑
@@ -35,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <ConfigProvider locale={zhCN}>
             <App/>
             <div title={"返回顶部"}>
-                <BackTop/>
+                <FloatButton.BackTop/>
             </div>
         </ConfigProvider>
     </Provider>

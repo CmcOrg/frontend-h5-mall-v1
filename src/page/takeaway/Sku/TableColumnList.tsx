@@ -65,6 +65,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         dataIndex: 'createTime',
         hideInSearch: true,
         valueType: 'fromNow',
+        width: 90,
     },
 
     {
@@ -72,6 +73,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
         dataIndex: 'updateTime',
         hideInSearch: true,
         valueType: 'fromNow',
+        width: 90,
     },
 
     {title: '备注', dataIndex: 'remark', ellipsis: true, width: 90,},
