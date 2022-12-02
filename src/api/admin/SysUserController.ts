@@ -43,6 +43,7 @@ export interface SysUserInfoByIdVO {
     signInName?: string // 登录名，可以为空
     phone?: string // 手机号，可以为空
     tenantId?: number // 租户主键 id
+    wxOpenId?: string // 微信 openId，可以为空
     id?: number // 主键id
     createId?: number // 创建人id
     createTime?: string // 创建时间
@@ -60,6 +61,7 @@ export function SysUserInfoById(form: NotNullId, config?: AxiosRequestConfig) {
 export interface SysUserInsertOrUpdateDTO {
     signInName?: string // 登录名 {"sizeMax":20,"sizeMin":0,"regexp":"^[\\u4E00-\\u9FA5A-Za-z0-9_-]{2,20}$"}
     email?: string // 邮箱 {"sizeMax":200,"sizeMin":0,"regexp":"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"}
+    phone?: string // 手机号码 {"sizeMax":100,"sizeMin":0,"regexp":"^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}$"}
     password?: string // 前端加密之后的密码
     origPassword?: string // 前端加密之后的原始密码
     nickname?: string // 昵称 {"regexp":"^[\\u4E00-\\u9FA5A-Za-z0-9_-]{2,20}$"}
@@ -81,6 +83,8 @@ export interface SysUserPageDTO {
     avatarUri?: string // 头像uri
     signInName?: string // 登录名
     email?: string // 邮箱
+    phone?: string // 手机号码
+    wxOpenId?: string // 微信 openId
     enableFlag?: boolean // 是否正常
     passwordFlag?: boolean // 是否有密码
     current?: number // 第几页
@@ -95,6 +99,8 @@ export interface SysUserPageVO {
     avatarUri?: string // 头像uri
     email?: string // 邮箱，备注：会脱敏
     signInName?: string // 登录名，会脱敏
+    phone?: string // 手机号码，会脱敏
+    wxOpenId?: string // 微信 openId，会脱敏
     enableFlag?: boolean // 正常/冻结
     passwordFlag?: boolean // 是否有密码
     createTime?: string // 创建时间

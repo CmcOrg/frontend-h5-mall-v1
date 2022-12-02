@@ -90,3 +90,28 @@ export interface TakeawaySpuDO {
 export function TakeawaySpuPage(form: TakeawaySpuPageDTO, config?: AxiosRequestConfig) {
     return $http.myProPagePost<TakeawaySpuDO>('/takeaway/spu/page', form, config)
 }
+
+export interface TakeawaySpuUserProductDTO {
+    scene?: 1 | 2 // 场景：1 堂食 2 外卖
+}
+
+export interface TakeawayCategoryDO {
+    name?: string // 分类名称
+    scene?: 1 | 2 // 场景：1 堂食 2 外卖
+    orderNo?: number // 排序号（值越大越前面，默认为 0）
+    takeawaySpuDOList?: TakeawaySpuDO[] // 分类关联的 spu集合
+    id?: number // 主键id
+    createId?: number // 创建人id
+    createTime?: string // 创建时间
+    updateId?: number // 修改人id
+    updateTime?: string // 修改时间
+    version?: number // 乐观锁
+    enableFlag?: boolean // 是否启用
+    delFlag?: boolean // 是否逻辑删除
+    remark?: string // 备注
+}
+
+// 用户获取商品
+export function TakeawaySpuUserProduct(form: TakeawaySpuUserProductDTO, config?: AxiosRequestConfig) {
+    return $http.myProTreePost<TakeawayCategoryDO>('/takeaway/spu/user/product', form, config)
+}
