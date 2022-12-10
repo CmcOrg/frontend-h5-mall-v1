@@ -16,6 +16,11 @@ export interface NotNullId {
     id: number // 主键id {"min":1}
 }
 
+export interface TakeawaySpecItemDTO {
+    typeName?: string // 规格类型名称
+    name?: string // 规格名称
+}
+
 export interface TakeawaySkuDO {
     spuId?: number // SPU 主键 id（外键）
     spuSpecJsonListStr?: string // 规格 json对象集合字符串，例如：[{}]
@@ -30,6 +35,7 @@ export interface TakeawaySkuDO {
     number?: number // 库存
     spuFullName?: string // spu名称
     spuSpecJsonListStrSet?: string[] // 规格 json对象集合字符串，例如：[{}]，set
+    spuSpecJsonSet?: TakeawaySpecItemDTO[] // 规格 json对象集合，例如：[{}]
     id?: number // 主键id
     createId?: number // 创建人id
     createTime?: string // 创建时间
