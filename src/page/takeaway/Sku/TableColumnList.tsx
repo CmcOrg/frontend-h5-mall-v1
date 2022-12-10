@@ -15,7 +15,7 @@ const TableColumnList = (currentForm: React.MutableRefObject<TakeawaySkuInsertOr
 
     {title: '关联SPU', dataIndex: 'spuId', ellipsis: true, width: 90,},
 
-    {title: 'SPU名称', dataIndex: 'spuFullName', ellipsis: true, width: 90, hideInSearch: true,},
+    {title: 'SPU名称', dataIndex: 'spuName', ellipsis: true, width: 90, hideInSearch: true,},
 
     {
         title: '场景', dataIndex: 'scene', valueType: 'select',
