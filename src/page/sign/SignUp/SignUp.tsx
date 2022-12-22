@@ -10,6 +10,7 @@ import PathConstant from "@/model/constant/PathConstant";
 import {SendCode, SignUpFormHandler} from "@/page/sign/SignUp/SignUpUtil";
 import {ValidatorUtil} from "@/util/ValidatorUtil";
 import {Navigate} from "react-router-dom";
+import Link from "antd/es/typography/Link";
 
 // 是否允许：邮箱注册
 export const EMAIL_SIGN_UP_FLAG: boolean = false;
@@ -50,7 +51,7 @@ export default function () {
                 submitter={{searchConfig: {submitText: '注册'}}}
                 subTitle="Will have the most powerful !"
                 actions={
-                    <a title={"登录已有账号"} onClick={() => getAppNav()(PathConstant.SIGN_IN_PATH)}>登录已有账号</a>
+                    <Link title={"登录已有账号"} onClick={() => getAppNav()(PathConstant.SIGN_IN_PATH)}>登录已有账号</Link>
                 }
                 onFinish={async (form) => {
                     await SignUpFormHandler({...form, type: activeKey})

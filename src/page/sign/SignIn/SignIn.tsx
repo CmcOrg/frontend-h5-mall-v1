@@ -9,6 +9,7 @@ import {SignInFormHandler} from "@/page/sign/SignIn/SignInUtil";
 import {getAppNav} from "@/App";
 import PathConstant from "@/model/constant/PathConstant";
 import {SIGN_UP_FLAG} from "@/page/sign/SignUp/SignUp";
+import Link from 'antd/es/typography/Link';
 
 type TSignInType = 'account'; // 登录方式
 
@@ -32,7 +33,8 @@ export default function () {
                     <>
                         {
                             SIGN_UP_FLAG ?
-                                <div>或者 <a title={"注册"} onClick={() => getAppNav()(PathConstant.SIGN_UP_PATH)}>注册</a>
+                                <div>或者 <Link title={"注册"}
+                                              onClick={() => getAppNav()(PathConstant.SIGN_UP_PATH)}>注册</Link>
                                 </div> : null
                         }
                     </>
